@@ -21,5 +21,7 @@ class ArticleController extends Controller {
         // displayView maps this to /views/article/index.php automatically
         $this->displayView($articles);
     }
+
+    //test 
 }
 ?>
