@@ -6,10 +6,10 @@ use App\Services\BookingService;
 class BookingController {
   public function __construct(private BookingService $svc) {}
 
-  public function my(): void {
+  public function index(): void {
     $uid = $_SESSION['user']['id'];
     $bookings = $this->svc->getConfirmedSchedule($uid);
-    require __DIR__ . '/../views/booking/my.php';
+    require __DIR__ . '/../views/booking/index.php';
   }
 
   public function create(): void {
@@ -25,4 +25,35 @@ class BookingController {
       require __DIR__ . '/../views/booking/error.php';
     }
   }
+
+ public function delete(): void {
+    $id = isset($_POST['booking_id']) ? (int)$_POST['booking_id'] : 0;
+
+    if ($id <= 0) {
+        header('Location: /bookings?error=Invalid+booking');
+        exit;
+    }
+
+    $this->svc->deleteBooking($id);
+    header('Location: /bookings?success=1');
+    exit;
+}
+
+
+  // public function updateStatus(): void {
+  //   $id     = isset($_POST['booking_id']) ? (int)$_POST['booking_id'] : 0;
+  //   $status = $_POST['status'] ?? '';
+
+  //   if ($id <= 0 || $status === '') { header('Location: /bookings'); exit; }
+
+  //   try 
+  //   {
+  //     $this->svc->updateBookingStatus($id, $status, $_SESSION['user']['id']);
+  //     header('Location: /bookings?success=1');
+  //     exit;
+  //   } catch (\Exception $e) {
+  //     header('Location: /bookings?error=' . urlencode($e->getMessage()));
+  //     exit;
+  //   }
+  // }
 }

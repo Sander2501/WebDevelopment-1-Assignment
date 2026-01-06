@@ -55,4 +55,22 @@ class BookingService {
         }
         return ['id' => $id, 'start_at' => 'N/A', 'end_at' => 'N/A', 'class_name' => 'Unknown'];
     }
+
+    public function deleteBooking(int $id, int $userId): void 
+    {
+        $this->bookingRepository->deleteBooking($id);
+    }
+
+
+    // public function updateBookingStatus(int $bookingId, string $status, int $userId): void {
+    //     $allowed = ['confirmed', 'cancelled', 'pending']; // keep or reduce
+    //     if (!in_array($status, $allowed, true)) throw new \Exception('Invalid status.');
+
+    //     $b = $this->bookingRepository->findById($bookingId);
+    
+    //     if (!$b) throw new \Exception('Booking not found.');
+    //     if ((int)$b['user_id'] !== $userId) throw new \Exception('Not allowed.');
+
+    //     $this->bookingRepository->updateBookingStatus($bookingId, $status);
+    // }
 }
