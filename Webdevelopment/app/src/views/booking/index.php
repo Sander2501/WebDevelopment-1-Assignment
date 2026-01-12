@@ -1,11 +1,4 @@
 <?php
-/**
- * My Bookings View
- * Displays all confirmed bookings for the current user
- * 
- * Expected variables:
- * - $bookings - Array of Booking model objects
- */
 
 $pageTitle = 'My Bookings - Atlevia Sports';
 require __DIR__ .  '/../partials/header.php';
@@ -13,7 +6,6 @@ require __DIR__ . '/../partials/navbar.php';
 ?>
 
 <div class="container my-5">
-    <!-- Page Header -->
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
             <h1>My Bookings</h1>
@@ -23,24 +15,18 @@ require __DIR__ . '/../partials/navbar.php';
             <a href="/classes" class="btn btn-primary">Book a Class</a>
         </div>
     </div>
-
-    <!-- Success Message -->
     <?php if (isset($_GET['success'])): ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Success! </strong> Booking <?= $_GET['success'] === '1' ? 'deleted' : 'created' ?> successfully.
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
     <?php endif; ?>
-
-    <!-- Error Message -->
     <?php if (isset($_GET['error'])): ?>
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <strong>Error!</strong> <?= e($_GET['error']) ?>
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
     <?php endif; ?>
-
-    <!-- Bookings Table -->
     <div class="card shadow-sm">
         <div class="card-header bg-primary text-white">
             <h5 class="mb-0">Your Bookings</h5>
@@ -68,7 +54,6 @@ require __DIR__ . '/../partials/navbar.php';
                         <tbody>
                             <?php foreach ($bookings as $b): ?>
                                 <?php
-                                // Determine type and badge
                                 $typeLabel = $b->class_id ? 'Class' : 'Gym Session';
                                 
                                 $badge = 'bg-success';

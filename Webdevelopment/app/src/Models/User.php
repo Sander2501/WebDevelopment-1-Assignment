@@ -10,5 +10,5 @@ class User
     public string $name;
     public ?string $phone = null;
     public string $created_at;
-    public string $updated_at;
+    public ?string $updated_at = null;
 }
