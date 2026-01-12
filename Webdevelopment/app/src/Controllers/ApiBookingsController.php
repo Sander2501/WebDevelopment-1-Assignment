@@ -2,13 +2,13 @@
 
 namespace App\Controllers;
 
-use App\Services\BookingService;
+use App\Services\Interfaces\IBookingService;
 
 class ApiBookingsController
 {
-    private BookingService $svc;
+    private IBookingService $svc;
     
-    public function __construct(BookingService $svc)
+    public function __construct(IBookingService $svc)
     {
         $this->svc = $svc;
     }
@@ -16,12 +16,15 @@ class ApiBookingsController
     public function mine(): void
     {
         header('Content-Type: application/json');
+        header('Access-Control-Allow-Origin: *');
         echo json_encode($this->svc->getConfirmedSchedule($_SESSION['user']['id']));
     }
 
     public function create(): void
     {
         header('Content-Type: application/json');
+        header('Access-Control-Allow-Origin: *');
+        
         $uid  = $_SESSION['user']['id'];
         $mail = $_SESSION['user']['email'];
         $body = json_decode(file_get_contents('php://input'), true) ?? [];
@@ -38,7 +41,24 @@ class ApiBookingsController
                 $mail
             );
             http_response_code(201);
-            echo json_encode(['id' => $id, 'status' => 'confirmed']);
+            echo json_encode(['id' => $id, 'status' => 'confirmed', 'message' => 'Booking created successfully']);
+        } catch (\Exception $e) {
+            http_response_code(400);
+            echo json_encode(['error' => $e->getMessage()]);
+        }
+    }
+    
+    public function delete(int $id): void
+    {
+        header('Content-Type:  application/json');
+        header('Access-Control-Allow-Origin:  *');
+        
+        $userId = $_SESSION['user']['id'];
+        
+        try {
+            $this->svc->deleteBooking($id, $userId);
+            http_response_code(200);
+            echo json_encode(['success' => true, 'message' => 'Booking deleted successfully']);
         } catch (\Exception $e) {
             http_response_code(400);
             echo json_encode(['error' => $e->getMessage()]);

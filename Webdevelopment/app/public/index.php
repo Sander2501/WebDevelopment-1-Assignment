@@ -30,7 +30,7 @@ require_once __DIR__ . '/../src/Repositories/Interfaces/IContactRepository.php';
 require_once __DIR__ . '/../src/Repositories/UserRepository.php';
 require_once __DIR__ . '/../src/Repositories/BookingRepository.php';
 require_once __DIR__ . '/../src/Repositories/ClassRepository.php';
-require_once __DIR__ .  '/../src/Repositories/ProfileRepository.php';
+require_once __DIR__ . '/../src/Repositories/ProfileRepository.php';
 require_once __DIR__ . '/../src/Repositories/TrainerRepository.php';
 require_once __DIR__ . '/../src/Repositories/ContactRepository.php';
 
@@ -126,6 +126,11 @@ if ($path === '/api/bookings' && $method === 'POST') {
     exit; 
 }
 
+if (preg_match('#^/api/bookings/(\d+)$#', $path, $matches) && $method === 'DELETE') {
+    $apiBookings->delete((int)$matches[1]);
+    exit;
+}
+
 if ($path === '/profile' && $method === 'GET') {
     $profileCtrl->index();
     exit;
@@ -170,5 +175,9 @@ if (preg_match('#^/trainers/(\d+)/contact$#', $path, $matches) && $method === 'P
     $trainerCtrl->contact((int)$matches[1]);
     exit;
 }
+if ($path === '/privacy' && $method === 'GET') {
+    require __DIR__ . '/../src/Views/privacy.php';
+    exit;
+}
 http_response_code(404);
-echo "404 Not Found";   
+echo "404 Not Found";
