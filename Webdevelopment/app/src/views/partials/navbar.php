@@ -20,7 +20,7 @@
                     <a class="nav-link" href="/bookings">My Bookings</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/training-test">Training Test</a>
+                    <a class="nav-link" href="/trainers">Trainers Blog</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/profile">Profile</a>

@@ -14,56 +14,66 @@ $method = $_SERVER['REQUEST_METHOD'];
 require_once __DIR__ . '/../src/Config/Database.php';
 require_once __DIR__ . '/../src/Framework/BaseRepository.php';
 
-$pdo = App\Config\Database::getConnection();
-
 require_once __DIR__ . '/../src/Models/User.php';
 require_once __DIR__ . '/../src/Models/Booking.php';
 require_once __DIR__ .  '/../src/Models/ClassModel.php';
-require_once __DIR__ . '/../src/Models/TrainingPlan.php';
+require_once __DIR__ . '/../src/Models/Trainer.php';
+require_once __DIR__ . '/../src/Models/BlogPost.php';
 
 require_once __DIR__ . '/../src/Repositories/Interfaces/IUserRepository.php';
 require_once __DIR__ . '/../src/Repositories/Interfaces/IBookingRepository.php';
 require_once __DIR__ . '/../src/Repositories/Interfaces/IClassRepository.php';
 require_once __DIR__ . '/../src/Repositories/Interfaces/IProfileRepository.php';
+require_once __DIR__ . '/../src/Repositories/Interfaces/ITrainerRepository.php';
+require_once __DIR__ . '/../src/Repositories/Interfaces/IContactRepository.php';
 
 require_once __DIR__ . '/../src/Repositories/UserRepository.php';
 require_once __DIR__ . '/../src/Repositories/BookingRepository.php';
 require_once __DIR__ . '/../src/Repositories/ClassRepository.php';
-require_once __DIR__ . '/../src/Repositories/ProfileRepository.php';
+require_once __DIR__ .  '/../src/Repositories/ProfileRepository.php';
+require_once __DIR__ . '/../src/Repositories/TrainerRepository.php';
+require_once __DIR__ . '/../src/Repositories/ContactRepository.php';
 
 require_once __DIR__ . '/../src/Services/Interfaces/IUserService.php';
 require_once __DIR__ . '/../src/Services/Interfaces/IValidationService.php';
 require_once __DIR__ . '/../src/Services/Interfaces/IBookingService.php';
 require_once __DIR__ . '/../src/Services/Interfaces/IProfileService.php';
+require_once __DIR__ . '/../src/Services/Interfaces/ITrainerService.php';
 
 require_once __DIR__ . '/../src/Services/UserService.php';
 require_once __DIR__ . '/../src/Services/ValidationService.php';
 require_once __DIR__ . '/../src/Services/BookingService.php';
 require_once __DIR__ .  '/../src/Services/ProfileService.php';
+require_once __DIR__ . '/../src/Services/TrainerService.php';
 
 require_once __DIR__ . '/../src/Controllers/AuthController.php';
 require_once __DIR__ . '/../src/Controllers/BookingController.php';
-require_once __DIR__ .  '/../src/Controllers/ClassBookingController.php';
+require_once __DIR__ . '/../src/Controllers/ClassBookingController.php';
 require_once __DIR__ . '/../src/Controllers/ApiBookingsController.php';
 require_once __DIR__ . '/../src/Controllers/ProfileController.php';
-require_once __DIR__ . '/../src/Controllers/DashboardController.php';
+require_once __DIR__ . '/../src/Controllers/TrainerController.php';
+
+$pdo = App\Config\Database::getConnection();
 
 $userRepo = new App\Repositories\UserRepository();
 $bookingRepo = new App\Repositories\BookingRepository();
 $classRepo = new App\Repositories\ClassRepository();
 $profileRepo = new App\Repositories\ProfileRepository();
+$trainerRepo = new App\Repositories\TrainerRepository();
+$contactRepo = new App\Repositories\ContactRepository();
 
 $userService = new App\Services\UserService($userRepo);
 $validationService = new App\Services\ValidationService();
 $bookingService = new App\Services\BookingService($bookingRepo, $pdo);
 $profileService = new App\Services\ProfileService($profileRepo, $validationService);
+$trainerService = new App\Services\TrainerService($trainerRepo, $contactRepo, $validationService);
 
 $authCtrl = new App\Controllers\AuthController($userRepo, $validationService);
 $bookingCtrl = new App\Controllers\BookingController($bookingService);
 $classCtrl = new App\Controllers\ClassBookingController($classRepo);
 $apiBookings = new App\Controllers\ApiBookingsController($bookingService);
 $profileCtrl = new App\Controllers\ProfileController($profileService, $userRepo);
-$dashCtrl = new App\Controllers\DashboardController();
+$trainerCtrl = new App\Controllers\TrainerController($trainerService);
 
 if ($path === '/login' && $method === 'GET')  { $authCtrl->showLoginForm(); exit; }
 if ($path === '/login' && $method === 'POST') { $authCtrl->login(); exit; }
@@ -71,7 +81,7 @@ if ($path === '/login' && $method === 'POST') { $authCtrl->login(); exit; }
 if ($path === '/register' && $method === 'GET')  { $authCtrl->showRegisterForm(); exit; }
 if ($path === '/register' && $method === 'POST') { $authCtrl->register(); exit; }
 
-if (!   isset($_SESSION['user'])) {
+if (!  isset($_SESSION['user'])) {
     setFlash('error', 'Please login to access this page.');
     redirect('/login');
 }
@@ -81,39 +91,39 @@ if ($path === '/' || $path === '/dashboard') {
     exit;
 }
 
-if ($path === '/logout') {
-    $authCtrl->logout();
-    exit;
+if ($path === '/logout') { 
+    $authCtrl->logout(); 
+    exit; 
 }
 
-if ($path === '/classes' && $method === 'GET') {
-    $classCtrl->index();
-    exit;
+if ($path === '/classes' && $method === 'GET') { 
+    $classCtrl->index(); 
+    exit; 
 }
 
-if ($path === '/bookings' && $method === 'GET') {
-    $bookingCtrl->index();
-    exit;
+if ($path === '/bookings' && $method === 'GET') { 
+    $bookingCtrl->index(); 
+    exit; 
 }
 
-if ($path === '/bookings' && $method === 'POST') {
-    $bookingCtrl->create();
-    exit;
+if ($path === '/bookings' && $method === 'POST') { 
+    $bookingCtrl->create(); 
+    exit; 
 }
 
-if ($path === '/bookings/delete' && $method === 'POST') {
-    $bookingCtrl->delete();
-    exit;
+if ($path === '/bookings/delete' && $method === 'POST') { 
+    $bookingCtrl->delete(); 
+    exit; 
 }
 
-if ($path === '/api/bookings' && $method === 'GET') {
-    $apiBookings->mine();
-    exit;
+if ($path === '/api/bookings' && $method === 'GET') { 
+    $apiBookings->mine(); 
+    exit; 
 }
 
-if ($path === '/api/bookings' && $method === 'POST') {
-    $apiBookings->create();
-    exit;
+if ($path === '/api/bookings' && $method === 'POST') { 
+    $apiBookings->create(); 
+    exit; 
 }
 
 if ($path === '/profile' && $method === 'GET') {
@@ -146,11 +156,19 @@ if ($path === '/profile/delete-confirm' && $method === 'POST') {
     exit;
 }
 
-if ($path === '/training-test') {
-    echo "<h1>Training Test - Coming Soon! </h1>";
-    echo "<p><a href='/dashboard'>Back to Dashboard</a></p>";
+if ($path === '/trainers' && $method === 'GET') {
+    $trainerCtrl->index();
     exit;
 }
 
+if (preg_match('#^/trainers/(\d+)$#', $path, $matches) && $method === 'GET') {
+    $trainerCtrl->view((int)$matches[1]);
+    exit;
+}
+
+if (preg_match('#^/trainers/(\d+)/contact$#', $path, $matches) && $method === 'POST') {
+    $trainerCtrl->contact((int)$matches[1]);
+    exit;
+}
 http_response_code(404);
-echo "404 - Page Not Found";
+echo "404 Not Found";   

@@ -40,12 +40,12 @@ require __DIR__ . '/../partials/navbar.php';
             <div class="card h-100 shadow-sm">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-start mb-3">
-                        <h5 class="card-title">Training</h5>
+                        <h5 class="card-title">Trainers & Blogs</h5>
                         <span class="badge bg-success">New</span>
                     </div>
-                    <p class="card-text text-muted">Personal Training Test</p>
-                    <p class="card-text">Get a plan based on your goals</p>
-                    <a href="/training-test" class="btn btn-primary">Start Test</a>
+                    <p class="card-text text-muted">Read trainer tips, routines, nutrition advice, and updates.</p>
+                    <p class="card-text">Get tips for your fitness journey</p>
+                    <a href="/trainers" class="btn btn-primary">Open Blogs</a>
                 </div>
             </div>
         </div>
@@ -69,12 +69,8 @@ require __DIR__ . '/../partials/navbar.php';
     <div class="row g-3">
         <?php
         $features = [
-            ['title' => 'Training Test', 'badge' => 'Recommended', 'badgeClass' => 'warning', 'desc' => 'Discover a training plan tailored to your goals and experience.', 'link' => '/training-test', 'btnText' => 'Start Test'],
             ['title' => 'Class Booking', 'badge' => 'Popular', 'badgeClass' => 'success', 'desc' => 'Book group classes led by professional trainers.', 'link' => '/classes', 'btnText' => 'View Classes'],
             ['title' => 'Gym Session Booking', 'badge' => 'Schedule', 'badgeClass' => 'info', 'desc' => 'Reserve your gym sessions in advance and manage them easily.', 'link' => '/bookings', 'btnText' => 'My Bookings'],
-            ['title' => 'Memberships', 'badge' => 'Coming Soon', 'badgeClass' => 'secondary', 'desc' => 'View membership options and upgrade when you\'re ready.', 'link' => '/memberships', 'btnText' => 'Membership Options'],
-            ['title' => 'Day Passes', 'badge' => 'Coming Soon', 'badgeClass' => 'secondary', 'desc' => 'Purchase single-day gym access for you or a friend.', 'link' => '/day-passes', 'btnText' => 'Buy Day Pass'],
-            ['title' => 'Trainers & Blogs', 'badge' => 'Coming Soon', 'badgeClass' => 'secondary', 'desc' => 'Read trainer tips, routines, nutrition advice, and updates.', 'link' => '/trainers', 'btnText' => 'Open Blogs'],
             ['title' => 'Profile Settings', 'badge' => 'Account', 'badgeClass' => 'primary', 'desc' => 'Update your details, preferences, and contact information.', 'link' => '/profile', 'btnText' => 'Edit Profile'],
             ['title' => 'My Bookings', 'badge' => 'Overview', 'badgeClass' => 'info', 'desc' => 'See your confirmed bookings and manage your schedule.', 'link' => '/bookings', 'btnText' => 'View My Bookings'],
         ];
