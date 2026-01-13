@@ -22,7 +22,7 @@ class BookingController
     }
     
     public function create(): void
-    {
+    {   
         $uid  = $_SESSION['user']['id'];
         $mail = $_SESSION['user']['email'];
         $classId = isset($_POST['class_id']) && $_POST['class_id'] !== '' 

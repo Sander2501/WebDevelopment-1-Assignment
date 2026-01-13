@@ -50,18 +50,16 @@ require __DIR__ . '/../partials/navbar.php';
                             <p class="card-text">
                                 <strong>Trainer:</strong> <?= e($c->trainer) ?><br>
                                 <strong>Location:</strong> <?= e($c->location) ?><br>
-                                
+                                <strong>Time:</strong>
                                 <?php if ($hasTimes): ?>
-                                    <strong>Time:</strong><br>
-                                    <?= e(date('D, M j @ g:i A', strtotime($c->start_at))) ?><br>
-                                    to <?= e(date('g:i A', strtotime($c->end_at))) ?>
+                                    <?= e(date('D, M j', strtotime($c->start_at))) ?>
+                                    <?= e(date('g:i A', strtotime($c->start_at))) ?> - <?= e(date('g:i A', strtotime($c->end_at))) ?>
                                 <?php else: ?>
-                                    <strong>Time: </strong> To be announced
+                                    To be announced
                                 <?php endif; ?>
-                                
+                                <br>
                                 <?php if ($c->capacity > 0): ?>
-                                    <br><strong>Spots:  </strong> 
-                                    <?= e($c->booked) ?> / <?= e($c->capacity) ?>
+                                    <strong>Spots:</strong> <?= e($c->booked) ?> / <?= e($c->capacity) ?>
                                     <?php if ($c->capacity - $c->booked <= 3 && !  $isFull): ?>
                                         <span class="badge bg-warning text-dark">Almost Full</span>
                                     <?php endif; ?>

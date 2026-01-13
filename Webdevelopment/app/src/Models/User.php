@@ -9,6 +9,7 @@ class User
     public string $password_hash;
     public string $name;
     public ?string $phone = null;
+    public ?string $profile_photo = null;
     public string $created_at;
     public ?string $updated_at = null;
 }

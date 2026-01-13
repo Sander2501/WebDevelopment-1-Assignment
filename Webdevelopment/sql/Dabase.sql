@@ -185,25 +185,6 @@ INSERT INTO bookings (user_id, class_id, start_at, end_at, status) VALUES
 (1, 4, '2026-01-15 18:00:00', '2026-01-15 19:00:00', 'confirmed'),
 (1, NULL, '2026-01-17 14:00:00', '2026-01-17 15:30:00', 'confirmed');
 
--- ============================================
--- SEED DATA - CONTACT REQUESTS (Sample)
--- ============================================
 INSERT INTO contact_requests (trainer_id, name, email, message) VALUES
 (1, 'Test User', 'test@atleviasports.com', 'Hi John, I would like to schedule a free consultation to discuss a personalized strength training program.  I am available next week. '),
 (2, 'Jane Smith', 'jane. smith@example.com', 'Hello Sarah, I am interested in private yoga sessions. Could we discuss your availability and rates?');
-
--- ============================================
--- VERIFICATION QUERIES
--- ============================================
--- Uncomment these to verify data was inserted correctly
-
--- SELECT COUNT(*) as total_users FROM users;
--- SELECT COUNT(*) as total_classes FROM classes;
--- SELECT COUNT(*) as total_bookings FROM bookings;
--- SELECT COUNT(*) as total_trainers FROM trainers;
--- SELECT COUNT(*) as total_blog_posts FROM blog_posts;
--- SELECT COUNT(*) as total_contact_requests FROM contact_requests;
-
--- ============================================
--- END OF SCHEMA
--- ============================================
