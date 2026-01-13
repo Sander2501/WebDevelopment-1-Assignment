@@ -1,11 +1,4 @@
 <?php
-/**
- * Booking Error View
- * Displays error message when booking fails
- * 
- * Expected variables:
- * - $error - Error message string
- */
 
 $pageTitle = 'Booking Error - Atlevia Sports';
 require __DIR__ . '/../partials/header.php';

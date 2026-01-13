@@ -1,4 +1,5 @@
 <?php
+//
 
 namespace App\Controllers;
 
@@ -25,7 +26,8 @@ class ProfileController
             exit;
         }
         
-        require __DIR__ . '/../Views/profile/index.php';
+        // FIXED: Lowercase 'views'
+        require __DIR__ . '/../views/profile/index.php';
     }
     
     public function updateProfile(): void
@@ -40,13 +42,15 @@ class ProfileController
             
             $_SESSION['user']['name'] = $name;
             
-            $success = "Profile updated successfully. ";
+            $success = "Profile updated successfully.";
             $user = $this->userRepo->findById($userId);
-            require __DIR__ . '/../Views/profile/index.php';
+            // FIXED: Lowercase 'views'
+            require __DIR__ . '/../views/profile/index.php';
         } catch (\Exception $e) {
             $error = $e->getMessage();
             $user = $this->userRepo->findById($userId);
-            require __DIR__ . '/../Views/profile/index.php';
+            // FIXED: Lowercase 'views'
+            require __DIR__ . '/../views/profile/index.php';
         }
     }
     
@@ -62,11 +66,13 @@ class ProfileController
             
             $success = "Email updated successfully.";
             $user = $this->userRepo->findById($userId);
-            require __DIR__ . '/../Views/profile/index.php';
+            // FIXED: Lowercase 'views'
+            require __DIR__ . '/../views/profile/index.php';
         } catch (\Exception $e) {
             $error = $e->getMessage();
             $user = $this->userRepo->findById($userId);
-            require __DIR__ . '/../Views/profile/index.php';
+            // FIXED: Lowercase 'views'
+            require __DIR__ . '/../views/profile/index.php';
         }
     }
     
@@ -87,10 +93,12 @@ class ProfileController
             $this->profileService->changePassword($userId, $currentPassword, $newPassword, $user->password_hash);
             
             $success = "Password changed successfully.";
-            require __DIR__ . '/../Views/profile/index.php';
+            // FIXED: Lowercase 'views'
+            require __DIR__ . '/../views/profile/index.php';
         } catch (\Exception $e) {
             $error = $e->getMessage();
-            require __DIR__ . '/../Views/profile/index.php';
+            // FIXED: Lowercase 'views'
+            require __DIR__ . '/../views/profile/index.php';
         }
     }
     
@@ -103,7 +111,8 @@ class ProfileController
             exit;
         }
         
-        require __DIR__ . '/../Views/profile/delete.php';
+        // FIXED: Lowercase 'views'
+        require __DIR__ . '/../views/profile/delete.php';
     }
     
     public function confirmDelete(): void
@@ -122,11 +131,12 @@ class ProfileController
             $this->profileService->deleteAccount($userId, $password, $user->password_hash);
             
             session_destroy();
-            header('Location: /login? deleted=1');
+            header('Location: /login?deleted=1');
             exit;
         } catch (\Exception $e) {
             $error = $e->getMessage();
-            require __DIR__ . '/../Views/profile/delete.php';
+            // FIXED: Lowercase 'views'
+            require __DIR__ . '/../views/profile/delete.php';
         }
     }
 }

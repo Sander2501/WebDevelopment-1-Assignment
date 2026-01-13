@@ -9,4 +9,9 @@ class BlogPost
     public string $title;
     public string $content;
     public string $published_at;
+    
+    // Dynamic properties from JOIN
+    public ?string $author_name = null;
+    public ?string $author_photo = null;
+    public ?string $author_spec = null;
 }

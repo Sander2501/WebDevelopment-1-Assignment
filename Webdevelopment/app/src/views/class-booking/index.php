@@ -1,5 +1,5 @@
 <?php
-//
+
 $pageTitle = 'Class Booking - Atlevia Sports';
 require __DIR__ . '/../partials/header.php';
 require __DIR__ . '/../partials/navbar.php';

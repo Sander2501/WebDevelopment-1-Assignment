@@ -1,4 +1,5 @@
 <?php
+//
 
 namespace App\Repositories;
 
@@ -16,7 +17,8 @@ class TrainerRepository extends BaseRepository implements ITrainerRepository
     
     public function findById(int $id): ?array
     {
-        $sql = "SELECT * FROM trainers WHERE id = : id LIMIT 1";
+        // FIXED: Removed the space between ':' and 'id'
+        $sql = "SELECT * FROM trainers WHERE id = :id LIMIT 1";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute(['id' => $id]);
         $result = $stmt->fetch(\PDO::FETCH_ASSOC);

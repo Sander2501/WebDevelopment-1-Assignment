@@ -1,4 +1,5 @@
 <?php
+//
 
 namespace App\Controllers;
 
@@ -16,7 +17,8 @@ class TrainerController
     public function index(): void
     {
         $trainers = $this->trainerService->getAllTrainers();
-        require __DIR__ . '/../Views/trainers/index.php';
+        // Fixed: changed 'Views' to 'views'
+        require __DIR__ . '/../views/trainers/index.php';
     }
     
     public function view(int $id): void
@@ -25,10 +27,12 @@ class TrainerController
             $data = $this->trainerService->getTrainerWithBlogs($id);
             $trainer = $data['trainer'];
             $blogs = $data['blogs'];
-            require __DIR__ . '/../Views/trainers/view.php';
+            // Fixed: changed 'Views' to 'views'
+            require __DIR__ . '/../views/trainers/view.php';
         } catch (\Exception $e) {
             $error = $e->getMessage();
-            require __DIR__ . '/../Views/error.php';
+            // Fixed: changed 'Views' to 'views' so it finds the file you just created
+            require __DIR__ . '/../views/error.php';
         }
     }
     
@@ -41,14 +45,15 @@ class TrainerController
         try {
             $this->trainerService->submitContactRequest($trainerId, $name, $email, $message);
             
-            header("Location: /trainers/$trainerId? success=1");
+            header("Location: /trainers/$trainerId?success=1");
             exit;
         } catch (\Exception $e) {
             $error = $e->getMessage();
             $data = $this->trainerService->getTrainerWithBlogs($trainerId);
             $trainer = $data['trainer'];
             $blogs = $data['blogs'];
-            require __DIR__ .  '/../Views/trainers/view.php';
+            // Fixed: changed 'Views' to 'views'
+            require __DIR__ .  '/../views/trainers/view.php';
         }
     }
 }
