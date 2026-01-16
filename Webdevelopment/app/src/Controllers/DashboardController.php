@@ -16,14 +16,14 @@ class DashboardController
     public function index(): void
     {
         $user = $_SESSION['user'];
-        
+
         $allBookings = $this->bookingService->getConfirmedSchedule($user['id']);
-        
-        $upcoming = array_filter($allBookings, function($b) {
+
+        $upcoming = array_filter($allBookings, function ($b) {
             return strtotime($b->start_at) > time();
         });
-        
-        usort($upcoming, function($a, $b) {
+
+        usort($upcoming, function ($a, $b) {
             return strtotime($a->start_at) - strtotime($b->start_at);
         });
 

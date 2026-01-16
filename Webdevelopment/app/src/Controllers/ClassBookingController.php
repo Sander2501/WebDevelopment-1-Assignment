@@ -7,7 +7,7 @@ use App\Repositories\ClassRepository;
 class ClassBookingController
 {
     private ClassRepository $classRepo;
-    
+
     public function __construct(ClassRepository $classRepo)
     {
         $this->classRepo = $classRepo;

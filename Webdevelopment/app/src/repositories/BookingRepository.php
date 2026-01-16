@@ -16,57 +16,50 @@ class BookingRepository extends BaseRepository implements IBookingRepository
                 LEFT JOIN classes c ON b.class_id = c.id
                 WHERE b.user_id = :user_id 
                 AND b.status = 'confirmed'
-                ORDER BY b.start_at DESC
-        ";
-        
+                ORDER BY b.start_at DESC";
+
         return $this->fetchAll($sql, ['user_id' => $userId], Booking::class);
     }
-    
-    public function hasConfirmedOverlap(string $start, string $end, int $userId, ? int $excludeBookingId = null): 
-    bool { $sql = "SELECT COUNT(*) as count 
+
+    public function hasConfirmedOverlap(string $start, string $end, int $userId, ?int $excludeBookingId = null): bool
+    {
+        $sql = "SELECT COUNT(*) as count 
                 FROM bookings 
                 WHERE user_id = :user_id 
                 AND status = 'confirmed'
-                AND ((start_at < :end AND end_at > :start))
-            ";
-        
-        $params = ['user_id' => $userId,'start' => $start,'end' => $end];
-        
-        if ($excludeBookingId !== null) {$sql .= " AND id != :exclude_id"; 
+                AND ((start_at < :end AND end_at > :start))";
+
+        $params = ['user_id' => $userId, 'start' => $start, 'end' => $end];
+
+        if ($excludeBookingId !== null) {
+            $sql .= " AND id != :exclude_id";
             $params['exclude_id'] = $excludeBookingId;
         }
-        
+
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($params);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        
-        return (int)$result['count'] > 0;
+
+        return (int) $result['count'] > 0;
     }
-    
-    public function createBooking(int $userId, ? int $classId, string $start, string $end): int 
+
+    public function createBooking(int $userId, ?int $classId, string $start, string $end): int
     {
         $stmt = $this->pdo->prepare("INSERT INTO bookings (user_id, class_id, start_at, end_at, status, created_at) 
-        VALUES (:user_id, :class_id, :start_at, :end_at, 'confirmed', NOW())
-        ");
-        
-        $stmt->execute([
-            'user_id' => $userId,
-            'class_id' => $classId,
-            'start_at' => $start,
-            'end_at' => $end
-        ]);
-        
-        return (int)$this->pdo->lastInsertId();
+                VALUES (:user_id, :class_id, :start_at, :end_at, 'confirmed', NOW())");
+
+        $stmt->execute(['user_id' => $userId, 'class_id' => $classId, 'start_at' => $start, 'end_at' => $end]);
+
+        return (int) $this->pdo->lastInsertId();
     }
-    
+
     public function findById(int $id): ?Booking
     {
         $sql = "SELECT b.*, c.name as class_name
                 FROM bookings b
                 LEFT JOIN classes c ON b.class_id = c.id
                 WHERE b.id = :id
-                LIMIT 1
-            ";
+                LIMIT 1";
         return $this->fetchOne($sql, ['id' => $id], Booking::class);
     }
 
@@ -78,11 +71,9 @@ class BookingRepository extends BaseRepository implements IBookingRepository
 
     public function updateBookingStatus(int $id, string $status): void
     {
-        $stmt = $this->pdo->prepare
-        ("UPDATE bookings 
+        $stmt = $this->pdo->prepare("UPDATE bookings 
                 SET status = :status, updated_at = NOW() 
-                WHERE id = :id
-        ");
+                WHERE id = :id");
         $stmt->execute(['status' => $status, 'id' => $id]);
     }
 }

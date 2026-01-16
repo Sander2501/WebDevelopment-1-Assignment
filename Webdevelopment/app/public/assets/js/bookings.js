@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const bookingForms = document.querySelectorAll('.booking-form');
     bookingForms.forEach(form => {
         form.addEventListener('submit', handleBookingSubmit);
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 async function handleBookingSubmit(e) {
     e.preventDefault();
-    
+
     const form = e.target;
     const formData = new FormData(form);
 
@@ -58,7 +58,7 @@ async function handleBookingSubmit(e) {
 
 async function handleBookingDelete(e) {
     e.preventDefault();
-    
+
     const bookingId = e.target.dataset.bookingId;
 
     const button = e.target;
@@ -112,10 +112,7 @@ function showAlert(message, type) {
     alertDiv.className = `alert alert-${type} alert-dismissible fade show alert-floating`;
     alertDiv.style.cssText = 'position: fixed; top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
     alertDiv.role = 'alert';
-    alertDiv.innerHTML = `
-        <strong>${type === 'success' ? '✓ Success!' : '✗ Error!'}</strong> ${message}
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    `;
+    alertDiv.innerHTML = `<strong>${type === 'success' ? '✓ Success!' : '✗ Error!'}</strong> ${message}<button type="button" class="btn-close" data-bs-dismiss="alert"></button>`;
 
     document.body.appendChild(alertDiv);
 

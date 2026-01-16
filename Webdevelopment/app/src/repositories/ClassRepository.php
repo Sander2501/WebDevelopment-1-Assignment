@@ -13,9 +13,8 @@ class ClassRepository extends BaseRepository implements IClassRepository
     {
         $sql = "SELECT id, name, trainer, location, start_at, end_at, capacity, booked, description
                 FROM classes
-                ORDER BY start_at
-        ";
-        
+                ORDER BY start_at";
+
         return $this->fetchAll($sql, [], ClassModel::class);
     }
 

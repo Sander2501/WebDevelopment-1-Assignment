@@ -12,12 +12,7 @@ class ContactRepository extends BaseRepository implements IContactRepository
         $sql = "INSERT INTO contact_requests (trainer_id, name, email, message, created_at) 
                 VALUES (:trainer_id, :name, :email, :message, NOW())";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([
-            'trainer_id' => $trainerId,
-            'name' => $name,
-            'email' => $email,
-            'message' => $message
-        ]);
-        return (int)$this->pdo->lastInsertId();
+        $stmt->execute(['trainer_id' => $trainerId, 'name' => $name, 'email' => $email, 'message' => $message]);
+        return (int) $this->pdo->lastInsertId();
     }
 }

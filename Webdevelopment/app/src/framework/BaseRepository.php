@@ -19,7 +19,7 @@ abstract class BaseRepository
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($params);
         $stmt->setFetchMode(PDO::FETCH_CLASS, $modelClass);
-        
+
         $result = $stmt->fetch();
         return $result ?: null;
     }
@@ -27,8 +27,8 @@ abstract class BaseRepository
     {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($params);
-        $stmt->setFetchMode(PDO:: FETCH_CLASS, $modelClass);
-        
+        $stmt->setFetchMode(PDO::FETCH_CLASS, $modelClass);
+
         return $stmt->fetchAll();
     }
 }
