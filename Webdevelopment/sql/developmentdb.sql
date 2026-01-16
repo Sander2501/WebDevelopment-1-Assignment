@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Gegenereerd op: 13 jan 2026 om 22:37
+-- Gegenereerd op: 16 jan 2026 om 18:27
 -- Serverversie: 12.1.2-MariaDB-ubu2404
 -- PHP-versie: 8.3.28
 
@@ -77,7 +77,11 @@ CREATE TABLE `bookings` (
 INSERT INTO `bookings` (`id`, `user_id`, `class_id`, `start_at`, `end_at`, `status`, `created_at`, `updated_at`) VALUES
 (34, 4, NULL, '2026-01-14 04:30:00', '2026-01-14 05:30:00', 'confirmed', '2026-01-13 22:32:59', '2026-01-13 22:32:59'),
 (35, 4, 1, '2026-01-14 09:00:00', '2026-01-14 10:00:00', 'confirmed', '2026-01-13 22:33:19', '2026-01-13 22:33:19'),
-(36, 4, 2, '2026-01-14 10:30:00', '2026-01-14 11:30:00', 'confirmed', '2026-01-13 22:36:37', '2026-01-13 22:36:37');
+(36, 4, 2, '2026-01-14 10:30:00', '2026-01-14 11:30:00', 'confirmed', '2026-01-13 22:36:37', '2026-01-13 22:36:37'),
+(37, 4, 7, '2026-01-22 20:00:00', '2026-01-22 21:00:00', 'confirmed', '2026-01-13 22:46:56', '2026-01-13 22:46:56'),
+(40, 6, 1, '2026-01-17 09:00:00', '2026-01-17 10:00:00', 'confirmed', '2026-01-16 17:13:39', '2026-01-16 17:13:39'),
+(41, 6, 1, '2026-01-18 09:00:00', '2026-01-18 10:00:00', 'confirmed', '2026-01-16 17:13:46', '2026-01-16 17:13:46'),
+(42, 7, NULL, '2026-01-16 20:00:00', '2026-01-16 21:00:00', 'confirmed', '2026-01-16 17:15:29', '2026-01-16 17:15:29');
 
 -- --------------------------------------------------------
 
@@ -103,15 +107,15 @@ CREATE TABLE `classes` (
 --
 
 INSERT INTO `classes` (`id`, `name`, `trainer`, `location`, `start_at`, `end_at`, `capacity`, `booked`, `description`, `created_at`) VALUES
-(1, 'Morning Yoga', 'Sarah Johnson', 'Studio A', '2026-01-15 09:00:00', '2026-01-15 10:00:00', 15, 8, 'Start your day with relaxing yoga flow.  Suitable for all levels.', '2026-01-13 21:18:09'),
-(2, 'HIIT Training', 'Mike Williams', 'Gym Floor', '2026-01-15 10:30:00', '2026-01-15 11:30:00', 20, 12, 'High-intensity interval training to boost your metabolism. ', '2026-01-13 21:18:09'),
-(3, 'Boxing Basics', 'Emma Davis', 'Boxing Ring', '2026-01-15 14:00:00', '2026-01-15 15:00:00', 12, 10, 'Learn fundamental boxing techniques and combinations.', '2026-01-13 21:18:09'),
-(4, 'Strength Training', 'John Smith', 'Weight Room', '2026-01-15 18:00:00', '2026-01-15 19:00:00', 15, 5, 'Build muscle and strength with guided weight training.', '2026-01-13 21:18:09'),
-(5, 'Evening Yoga', 'Sarah Johnson', 'Studio A', '2026-01-16 19:00:00', '2026-01-16 20:00:00', 15, 3, 'Unwind with evening yoga and stretching. ', '2026-01-13 21:18:09'),
-(6, 'Cardio Blast', 'Mike Williams', 'Gym Floor', '2026-01-16 17:00:00', '2026-01-16 18:00:00', 20, 7, 'Intense cardio workout to improve endurance.', '2026-01-13 21:18:09'),
-(7, 'Advanced Boxing', 'Emma Davis', 'Boxing Ring', '2026-01-16 20:00:00', '2026-01-16 21:00:00', 10, 8, 'Advanced techniques for experienced boxers.', '2026-01-13 21:18:09'),
-(8, 'Power Lifting', 'John Smith', 'Weight Room', '2026-01-16 16:00:00', '2026-01-16 17:00:00', 12, 6, 'Focus on compound lifts:  squat, bench, deadlift.', '2026-01-13 21:18:09'),
-(10, 'HIIT & Core', 'Mike Williams', 'Gym Floor', '2026-01-18 11:30:00', '2026-01-18 12:30:00', 18, 9, 'HIIT combined with core strengthening exercises.', '2026-01-13 21:18:09');
+(1, 'Morning Yoga', 'Sarah Krom\n', 'Studio A', '2026-01-15 09:00:00', '2026-01-15 10:00:00', 15, 8, 'Start your day with relaxing yoga flow.  Suitable for all levels.', '2026-01-13 21:18:09'),
+(2, 'HIIT Training', 'Mike Meijer', 'Gym Floor', '2026-01-15 10:30:00', '2026-01-15 11:30:00', 20, 12, 'High-intensity interval training to boost your metabolism. ', '2026-01-13 21:18:09'),
+(3, 'Boxing Basics', 'Emma Klaver', 'Boxing Ring', '2026-01-15 14:00:00', '2026-01-15 15:00:00', 12, 10, 'Learn fundamental boxing techniques and combinations.', '2026-01-13 21:18:09'),
+(4, 'Strength Training', 'John Boer', 'Weight Room', '2026-01-15 18:00:00', '2026-01-15 19:00:00', 15, 5, 'Build muscle and strength with guided weight training.', '2026-01-13 21:18:09'),
+(5, 'Evening Yoga', 'Sarah Krom\n', 'Studio A', '2026-01-16 19:00:00', '2026-01-16 20:00:00', 15, 3, 'Unwind with evening yoga and stretching. ', '2026-01-13 21:18:09'),
+(6, 'Cardio Blast', 'Mike Meijer', 'Gym Floor', '2026-01-16 17:00:00', '2026-01-16 18:00:00', 20, 7, 'Intense cardio workout to improve endurance.', '2026-01-13 21:18:09'),
+(7, 'Advanced Boxing', 'Emma Klaver', 'Boxing Ring', '2026-01-16 20:00:00', '2026-01-16 21:00:00', 10, 8, 'Advanced techniques for experienced boxers.', '2026-01-13 21:18:09'),
+(8, 'Power Lifting', 'John Boer', 'Weight Room', '2026-01-16 16:00:00', '2026-01-16 17:00:00', 12, 6, 'Focus on compound lifts:  squat, bench, deadlift.', '2026-01-13 21:18:09'),
+(10, 'HIIT & Core', 'Mike Meijer', 'Gym Floor', '2026-01-18 11:30:00', '2026-01-18 12:30:00', 18, 9, 'HIIT combined with core strengthening exercises.', '2026-01-13 21:18:09');
 
 -- --------------------------------------------------------
 
@@ -133,8 +137,8 @@ CREATE TABLE `contact_requests` (
 --
 
 INSERT INTO `contact_requests` (`id`, `trainer_id`, `name`, `email`, `message`, `created_at`) VALUES
-(1, 1, 'Test User', 'test@atleviasports.com', 'Hi John, I would like to schedule a free consultation to discuss a personalized strength training program.  I am available next week. ', '2026-01-13 21:18:09'),
-(2, 2, 'Jane Smith', 'jane. smith@example.com', 'Hello Sarah, I am interested in private yoga sessions. Could we discuss your availability and rates?', '2026-01-13 21:18:09');
+(1, 1, 'Test User', 'test@atleviasports.com', '.............', '2026-01-13 21:18:09'),
+(5, 1, 'Test', 'smmeijer2501@hotmail.nl', 'TEST', '2026-01-16 18:07:36');
 
 -- --------------------------------------------------------
 
@@ -158,10 +162,10 @@ CREATE TABLE `trainers` (
 --
 
 INSERT INTO `trainers` (`id`, `name`, `email`, `phone`, `specialization`, `bio`, `photo`, `created_at`) VALUES
-(1, 'John Smith', 'john@atleviasports.com', '+31612345678', 'Strength Training', 'Certified personal trainer with 10+ years experience in strength and conditioning.  Specializes in powerlifting and bodybuilding.  Former competitive athlete with a passion for helping clients reach their fitness goals.', NULL, '2026-01-13 21:18:09'),
-(2, 'Sarah Johnson', 'sarah@atleviasports.com', '+31612345679', 'Yoga & Flexibility', 'Yoga instructor specializing in flexibility and mindfulness training. Certified in Vinyasa, Hatha, and Yin yoga. Believes in the healing power of movement and breath work for both body and mind.', NULL, '2026-01-13 21:18:09'),
-(3, 'Mike Williams', 'mike@atleviasports.com', '+31612345680', 'HIIT & Cardio', 'High-intensity interval training specialist focused on cardiovascular health. Former marathon runner with expertise in endurance training. Passionate about helping people achieve their fitness goals efficiently.', NULL, '2026-01-13 21:18:09'),
-(4, 'Emma Davis', 'emma@atleviasports.com', '+31612345681', 'Boxing & Combat', 'Professional boxing coach with competitive fighting background. Trained amateur and professional fighters. Specializes in technique, conditioning, and mental toughness for combat sports.', NULL, '2026-01-13 21:18:09');
+(1, 'John Boer', 'john@atleviasports.com', '+31612345678', 'Strength Training', 'Certified personal trainer with 10+ years experience in strength and conditioning.  Specializes in powerlifting and bodybuilding.  Former competitive athlete with a passion for helping clients reach their fitness goals.', NULL, '2026-01-13 21:18:09'),
+(2, 'Sarah Krom', 'sarah@atleviasports.com', '+31612345679', 'Yoga & Flexibility', 'Yoga instructor specializing in flexibility and mindfulness training. Certified in Vinyasa, Hatha, and Yin yoga. Believes in the healing power of movement and breath work for both body and mind.', NULL, '2026-01-13 21:18:09'),
+(3, 'Mike Meijer', 'mike@atleviasports.com', '+31612345680', 'HIIT & Cardio', 'High-intensity interval training specialist focused on cardiovascular health. Former marathon runner with expertise in endurance training. Passionate about helping people achieve their fitness goals efficiently.', NULL, '2026-01-13 21:18:09'),
+(4, 'Emma Klaver', 'emma@atleviasports.com', '+31612345681', 'Boxing & Combat', 'Professional boxing coach with competitive fighting background. Trained amateur and professional fighters. Specializes in technique, conditioning, and mental toughness for combat sports.', NULL, '2026-01-13 21:18:09');
 
 -- --------------------------------------------------------
 
@@ -185,7 +189,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password_hash`, `name`, `phone`, `profile_photo`, `created_at`, `updated_at`) VALUES
-(4, 'emuzun@my.aci.k12.com', '$2y$12$Om6dC7k3Qodo2z16pXdkMO0m5scur28ICNNPfRbNZWEyK/ncabZVa', 'Melisa Uzun', NULL, NULL, '2026-01-13 21:24:22', '2026-01-13 22:28:40');
+(4, 'emuzun@my.aci.k12.com', '$2y$12$Om6dC7k3Qodo2z16pXdkMO0m5scur28ICNNPfRbNZWEyK/ncabZVa', 'Melisa Uzun', NULL, NULL, '2026-01-13 21:24:22', '2026-01-13 22:28:40'),
+(6, 'smmeijer2501@hotmail.nl', '$2y$12$7B/bg9IAmQKDJaOzMcg0cOrZfPwJ2CKHiCfem00yXz.Yqz8zNZlv6', 'Sander Meijer', NULL, NULL, '2026-01-14 19:05:53', '2026-01-14 19:05:53'),
+(7, 'Sander@hotmail.nl', '$2y$12$HLKu4IMUtoq2j4RvwR.pSuTcmq7zvIICssPg89AawldeyFv3/WGw.', 'Remko Meijer', '0683714833', NULL, '2026-01-16 17:15:00', '2026-01-16 17:16:58'),
+(8, 'test@user.com', '$2y$12$WrxkbPDCHp.CLfNfjqwll.1yoiTsVUqnofs9KLyzDSKnbqP7B518u', 'Test', NULL, NULL, '2026-01-16 18:20:18', '2026-01-16 18:20:18');
 
 -- --------------------------------------------------------
 
@@ -273,7 +280,7 @@ ALTER TABLE `blog_posts`
 -- AUTO_INCREMENT voor een tabel `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT voor een tabel `classes`
@@ -285,7 +292,7 @@ ALTER TABLE `classes`
 -- AUTO_INCREMENT voor een tabel `contact_requests`
 --
 ALTER TABLE `contact_requests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT voor een tabel `trainers`
@@ -297,7 +304,7 @@ ALTER TABLE `trainers`
 -- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 -- --------------------------------------------------------
 
