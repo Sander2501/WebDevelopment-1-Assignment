@@ -1,5 +1,3 @@
-Here is a comprehensive README.md file for your project based on the provided source code and architecture.
-
 Atlevia Sports - Gym & Class Booking System
 Atlevia Sports is a custom MVC PHP web application that allows users to book gym sessions, reserve spots in fitness classes, manage their profiles, and read fitness blogs written by expert trainers.
 
